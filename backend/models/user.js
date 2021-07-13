@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Order, { foreignKey: "user_id" });
-      User.hasMany(models.Coupon, { foreignKey: "user_id" });
+      User.hasMany(models.Memo, { foreignKey: "user_id" });
     }
   }
   User.init(
@@ -19,8 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       phone: DataTypes.STRING,
       address: DataTypes.STRING,
-      money: DataTypes.STRING,
-      deliverycost: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { tokenState } from "../atom/atom";
 const axios = require("axios");
 
-const Login = () => {
+const LoginPage = () => {
   const [details, setDetails] = useState({ name: "", password: "" });
   const history = useHistory();
+  const [token, setToken] = useRecoilState(tokenState);
 
-  const saveToken = async () => {
+  const loginAndSaveToken = async () => {
     const body = { ...details };
     const { data } = await await axios.post(
       "http://localhost:5000/user/login",
       body
     );
-
-    if (data) {
-      window.localStorage.setItem("Token", data.token);
-      history.push("/");
-    }
+    window.localStorage.setItem("Token", data.token);
+    setToken(() => data.token);
+    history.push("/");
   };
 
   return (
-    <>
+    <div>
+      <h1>로그인페이지</h1>
+      <div>
+        <Link to="/">Back</Link>
+      </div>
       <input
         placeholder="이름"
         name="name"
@@ -31,9 +36,9 @@ const Login = () => {
         name="password"
         onChange={(e) => setDetails({ ...details, password: e.target.value })}
       ></input>
-      <button onClick={saveToken}>완료</button>
-    </>
+      <button onClick={loginAndSaveToken}>완료</button>
+    </div>
   );
 };
 
-export default Login;
+export default LoginPage;

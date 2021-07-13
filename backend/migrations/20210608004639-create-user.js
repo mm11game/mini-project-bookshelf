@@ -20,14 +20,6 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
       },
-      money: {
-        type: Sequelize.INTEGER,
-        defaultValue: 50000,
-      },
-      deliverycost: {
-        type: Sequelize.INTEGER,
-        defaultValue: 3000,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

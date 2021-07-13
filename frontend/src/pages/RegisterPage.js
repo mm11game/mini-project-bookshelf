@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 const axios = require("axios");
 
-const Register = () => {
+const RegisterPage = () => {
   const [details, setDetails] = useState({
     name: "",
     password: "",
@@ -23,7 +23,11 @@ const Register = () => {
     }
   };
   return (
-    <>
+    <div>
+      <h1>가입 페이지</h1>
+      <div>
+        <Link to="/">Back</Link>
+      </div>
       <input
         placeholder="이름"
         name="name"
@@ -45,8 +49,8 @@ const Register = () => {
         onChange={(e) => setDetails({ ...details, address: e.target.value })}
       ></input>
       <button onClick={saveToken}>가입하기</button>
-    </>
+    </div>
   );
 };
 
-export default Register;
+export default RegisterPage;
