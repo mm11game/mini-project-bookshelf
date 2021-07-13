@@ -30,21 +30,22 @@ const HomePage = () => {
     setToken(() => window.localStorage.getItem("Token"));
   }, [token]);
 
-  console.log(books);
-
   const removeBookHandler = async (book) => {
-    setBooks(() => {
-      return books.filter((e) => {
-        if (e.id === book.id && e.userId === user.id) {
-          return false;
-        } else {
-          return true;
-        }
+    console.log(user, book.id);
+    if (user) {
+      setBooks(() => {
+        return books.filter((e) => {
+          if (e.id === book.id && e.userId === user.id) {
+            return false;
+          } else {
+            return true;
+          }
+        });
       });
-    });
-    await axios.delete("http://localhost:5000/book/", {
-      headers: { Authorization: `Bearer ${token}`, bookid: book.id },
-    });
+      await axios.delete("http://localhost:5000/book/", {
+        headers: { Authorization: `Bearer ${token}`, bookid: book.id },
+      });
+    }
   };
 
   return (

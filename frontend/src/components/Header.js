@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import { useRecoilState } from "recoil";
-import { tokenState } from "../atom/atom";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { tokenState, userState } from "../atom/atom";
 
 const Header = () => {
   const history = useHistory();
-
+  const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Header = () => {
   const handleLogout = () => {
     window.localStorage.removeItem("Token");
     setToken(() => null);
+    setUser(() => null);
     history.push("/");
   };
 

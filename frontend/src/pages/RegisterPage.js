@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userState } from "../atom/atom";
 const axios = require("axios");
 
 const RegisterPage = () => {
+  const [user, setUser] = useRecoilState(userState);
   const [details, setDetails] = useState({
     name: "",
     password: "",
@@ -17,7 +20,7 @@ const RegisterPage = () => {
       "http://localhost:5000/user/signup",
       body
     );
-
+    setUser(() => data.createUser);
     window.localStorage.setItem("Token", data.token);
     history.push("/");
   };
