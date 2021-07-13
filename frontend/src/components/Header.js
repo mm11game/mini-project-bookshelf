@@ -15,6 +15,8 @@ const Header = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("Token");
+    window.localStorage.removeItem("myBooks");
+    window.localStorage.removeItem("User");
     setToken(() => null);
     setUser(() => null);
     history.push("/");
@@ -28,6 +30,7 @@ const Header = () => {
 
       {token ? (
         <>
+          <h3>{user.name}님께서 접속중</h3>
           <button onClick={handleLogout}>로그아웃</button>
           <Link to="/book">
             <button>책 업로드</button>

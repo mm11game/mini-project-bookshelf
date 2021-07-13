@@ -20,8 +20,9 @@ const RegisterPage = () => {
       "http://localhost:5000/user/signup",
       body
     );
-    setUser(() => data.createUser);
     window.localStorage.setItem("Token", data.token);
+    window.localStorage.setItem("User", JSON.stringify(data.createUser));
+    setUser(() => data.createUser);
     history.push("/");
   };
   return (

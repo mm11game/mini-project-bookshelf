@@ -17,6 +17,8 @@ const LoginPage = () => {
       body
     );
     window.localStorage.setItem("Token", data.token);
+    window.localStorage.setItem("User", JSON.stringify(data.user));
+
     setToken(() => data.token);
     setUser(() => data.user);
     history.push("/");

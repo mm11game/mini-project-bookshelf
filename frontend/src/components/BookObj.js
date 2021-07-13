@@ -5,6 +5,7 @@ import { memoState, myBooksState } from "../atom/atom";
 const BookObj = ({ book, removeBookHandler }) => {
   const [myBooks, setMyBooks] = useRecoilState(myBooksState);
   const [memos, setMemos] = useRecoilState(memoState);
+
   useEffect(() => {
     window.localStorage.setItem("myBooks", JSON.stringify(myBooks));
   }, [myBooks]);
