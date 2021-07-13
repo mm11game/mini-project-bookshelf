@@ -11,8 +11,7 @@ const Header = () => {
 
   useEffect(() => {
     setToken(() => window.localStorage.getItem("Token"));
-    setUser(() => window.localStorage.getItem("User"));
-  }, [token, user]);
+  }, [token]);
 
   const handleLogout = () => {
     window.localStorage.removeItem("Token");
