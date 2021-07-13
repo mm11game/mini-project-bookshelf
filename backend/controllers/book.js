@@ -60,7 +60,6 @@ module.exports = {
   }),
   postMemo: asyncHandler(async (req, res) => {
     const { content, bookId } = req.body;
-    console.log(bookId, req.tokenUser.id);
     const [memo, created] = await Memo.findOrCreate({
       where: {
         user_id: req.tokenUser.id,
@@ -82,7 +81,21 @@ module.exports = {
     });
     res.send("잘지워짐");
   }),
-  updateMemo: asyncHandler(async (req, res) => {}),
+  updateMemo: asyncHandler(async (req, res) => {
+    const { changedContent, memoId } = req.body;
+
+    const changed = await Memo.update(
+      { content: changedContent },
+      {
+        where: {
+          user_id: req.tokenUser.id,
+          id: memoId,
+        },
+      }
+    );
+
+    res.send(changed);
+  }),
 };
 
 //   signup: asyncHandler(async (req, res) => {

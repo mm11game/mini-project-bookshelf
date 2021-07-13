@@ -18,9 +18,28 @@ const MyBookPage = () => {
     fetchData();
   }, []);
 
-  console.log(myMemos);
+  const handleUpdate = async (memo, changedContent) => {
+    setMyMemos(() => {
+      return myMemos.map((x) => {
+        if (x.id === memo.id) {
+          return {
+            ...x,
+            content: changedContent,
+          };
+        } else {
+          return x;
+        }
+      });
+    });
+    const body = {
+      changedContent,
+      memoId: memo.id,
+    };
+    await axios.patch("http://localhost:5000/book/memo", body, {
+      headers: { Authorization: `Bearer ${token}`, memoId: memo.id },
+    });
+  };
 
-  const handleUpdate = async (memo, changedContent) => {};
   const handleDelete = async (memo) => {
     setMyMemos(() => {
       return myMemos.filter((x) => x.id !== memo.id);
@@ -29,6 +48,7 @@ const MyBookPage = () => {
       headers: { Authorization: `Bearer ${token}`, memoId: memo.id },
     });
   };
+
   return (
     <div>
       <h1>나의 책장 목록</h1>

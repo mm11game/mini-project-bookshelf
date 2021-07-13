@@ -12,5 +12,6 @@ router.delete("/", auth, bookControllers.bookDelete);
 router.get("/memo", auth, bookControllers.getMemoList);
 router.post("/memo", auth, bookControllers.postMemo);
 router.delete("/memo", auth, bookControllers.deleteMemo);
+router.patch("/memo", auth, bookControllers.updateMemo);
 
 module.exports = router;
