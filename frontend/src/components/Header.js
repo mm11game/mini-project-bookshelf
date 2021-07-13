@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { tokenState, userState } from "../atom/atom";
 
 const Header = () => {
@@ -11,7 +11,8 @@ const Header = () => {
 
   useEffect(() => {
     setToken(() => window.localStorage.getItem("Token"));
-  }, [token]);
+    setUser(() => window.localStorage.getItem("User"));
+  }, [token, user]);
 
   const handleLogout = () => {
     window.localStorage.removeItem("Token");

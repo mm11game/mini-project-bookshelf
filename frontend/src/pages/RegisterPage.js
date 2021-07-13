@@ -14,7 +14,7 @@ const RegisterPage = () => {
   });
   const history = useHistory();
 
-  const saveToken = async () => {
+  const registerAndSaveToken = async () => {
     const body = { ...details };
     const { data } = await axios.post(
       "http://localhost:5000/user/signup",
@@ -51,7 +51,7 @@ const RegisterPage = () => {
         name="address"
         onChange={(e) => setDetails({ ...details, address: e.target.value })}
       ></input>
-      <button onClick={saveToken}>가입하기</button>
+      <button onClick={registerAndSaveToken}>가입하기</button>
     </div>
   );
 };

@@ -13,6 +13,7 @@ const MyBookPage = () => {
       const { data } = await axios.get("http://localhost:5000/book/memo", {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setMyMemos(() => data);
     };
     fetchData();
@@ -41,11 +42,13 @@ const MyBookPage = () => {
   };
 
   const handleDelete = async (memo) => {
-    setMyMemos(() => {
-      return myMemos.filter((x) => x.id !== memo.id);
-    });
+    console.log("딜리트에서 메모", memo);
     await axios.delete("http://localhost:5000/book/memo", {
       headers: { Authorization: `Bearer ${token}`, memoId: memo.id },
+    });
+
+    setMyMemos(() => {
+      return myMemos.filter((x) => x.id !== memo.id);
     });
   };
 

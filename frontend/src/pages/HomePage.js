@@ -17,18 +17,8 @@ const HomePage = () => {
     };
     fetchData();
 
-    const fetchMemo = async () => {
-      const { data } = await axios.get("http://localhost:5000/book/memo", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setMemos(() => data);
-    };
-    fetchMemo();
-  }, []);
-
-  useEffect(() => {
     setToken(() => window.localStorage.getItem("Token"));
-  }, [token]);
+  }, []);
 
   const removeBookHandler = async (book) => {
     console.log(user, book.id);

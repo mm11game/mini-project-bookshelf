@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { memoState, myBooksState } from "../atom/atom";
+import React from "react";
 
 const BookObj = ({ book, removeBookHandler, addBooksHandler }) => {
   return (
