@@ -10,12 +10,12 @@ const BookUploadPage = () => {
     when: "",
   });
   const history = useHistory();
-  const getToken = window.localStorage.getItem("Token");
+  const token = window.localStorage.getItem("Token");
   const saveBook = async () => {
     const body = { ...details };
 
     await axios.post("http://localhost:5000/book", body, {
-      headers: { Authorization: `Bearer ${getToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     history.push("/");

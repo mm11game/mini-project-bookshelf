@@ -32,13 +32,12 @@ module.exports = {
       res.send(createBook);
     }
   }),
-  getMemo: asyncHandler(async (req, res) => {
+  getMemoList: asyncHandler(async (req, res) => {
     const { bookid } = req.headers;
 
-    const memo = await Memo.findOne({
+    const memo = await Memo.findAll({
       where: {
         user_id: req.tokenUser.id,
-        book_id: bookid,
       },
     });
 

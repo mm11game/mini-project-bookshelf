@@ -10,12 +10,15 @@ export const tokenState = atom({
 });
 //////////////////
 
+const myBooks = !!localStorage.getItem("myBooks")
+  ? JSON.parse(localStorage.getItem("myBooks"))
+  : [];
 export const myBooksState = atom({
   key: "myBooksState",
-  default: [],
+  default: [...myBooks],
 });
 ////////////
 export const memoState = atom({
   key: "memoState",
-  default: "",
+  default: [],
 });

@@ -6,13 +6,12 @@ import MyBookObj from "../components/MyBookObj";
 
 const MyBookPage = () => {
   const [mybooks, setMyBooks] = useRecoilState(myBooksState);
-  const [memo, setMemo] = useRecoilState(memoState);
 
   return (
     <div>
       <h1>나의 책장 목록</h1>
       {mybooks.map((mybook) => (
-        <MyBookObj key={mybook.id} mybook={mybook} memo={memo} />
+        <MyBookObj key={mybook.id} mybook={mybook} memo={mybook.memo} />
       ))}
     </div>
   );
