@@ -43,11 +43,12 @@ module.exports = {
     res.send("잘지워짐");
   }),
   getMemoList: asyncHandler(async (req, res) => {
-    const { bookid } = req.headers;
-
     const memo = await Memo.findAll({
       where: {
         user_id: req.tokenUser.id,
+      },
+      include: {
+        model: Book,
       },
     });
 
@@ -58,24 +59,30 @@ module.exports = {
     res.send(memo);
   }),
   postMemo: asyncHandler(async (req, res) => {
-    const { content } = req.body;
-    const { bookid } = req.headers;
-
+    const { content, bookId } = req.body;
+    console.log(bookId, req.tokenUser.id);
     const [memo, created] = await Memo.findOrCreate({
       where: {
         user_id: req.tokenUser.id,
-        book_id: bookid,
+        book_id: bookId,
       },
       defaults: {
         user_id: req.tokenUser.id,
-        book_id: bookid,
+        book_id: bookId,
         content: content,
       },
     });
 
     res.send(memo);
   }),
-  updateMemo: asyncHandler(async () => {}),
+  deleteMemo: asyncHandler(async (req, res) => {
+    const { memoid } = req.headers;
+    const deleted = await Memo.destroy({
+      where: { id: memoid, user_id: req.tokenUser.id },
+    });
+    res.send("잘지워짐");
+  }),
+  updateMemo: asyncHandler(async (req, res) => {}),
 };
 
 //   signup: asyncHandler(async (req, res) => {

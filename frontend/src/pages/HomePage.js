@@ -47,6 +47,15 @@ const HomePage = () => {
       });
     }
   };
+  const addBooksHandler = async (book) => {
+    const body = {
+      bookId: book.id,
+      content: "없음",
+    };
+    await axios.post("http://localhost:5000/book/memo", body, {
+      headers: { Authorization: `Bearer ${token}`, bookid: book.id },
+    });
+  };
 
   return (
     <div>
@@ -55,6 +64,7 @@ const HomePage = () => {
           key={book.id}
           book={book}
           removeBookHandler={removeBookHandler}
+          addBooksHandler={addBooksHandler}
         />
       ))}
     </div>

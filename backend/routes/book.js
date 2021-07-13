@@ -8,7 +8,9 @@ const { auth } = require("../middleware/auth.js");
 router.get("/", bookControllers.bookList);
 router.post("/", auth, bookControllers.bookUpload);
 router.delete("/", auth, bookControllers.bookDelete);
+
 router.get("/memo", auth, bookControllers.getMemoList);
 router.post("/memo", auth, bookControllers.postMemo);
+router.delete("/memo", auth, bookControllers.deleteMemo);
 
 module.exports = router;
