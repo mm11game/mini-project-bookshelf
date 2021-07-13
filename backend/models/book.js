@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       writer: DataTypes.STRING,
       publisher: DataTypes.STRING,
       when: DataTypes.STRING,
-      userId: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,

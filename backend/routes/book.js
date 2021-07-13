@@ -7,6 +7,7 @@ const { auth } = require("../middleware/auth.js");
 // router.post("/signup", userControllers.signup);
 router.get("/", bookControllers.bookList);
 router.post("/", auth, bookControllers.bookUpload);
+router.delete("/", auth, bookControllers.bookDelete);
 router.get("/memo", auth, bookControllers.getMemoList);
 router.post("/memo", auth, bookControllers.postMemo);
 

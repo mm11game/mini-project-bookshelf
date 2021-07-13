@@ -46,7 +46,7 @@ const BookUploadPage = () => {
         name="when"
         onChange={(e) => setDetails({ ...details, when: e.target.value })}
       ></input>
-      <button onClick={saveBook}>가입하기</button>
+      <button onClick={saveBook}>책 업로드하기</button>
     </div>
   );
 };

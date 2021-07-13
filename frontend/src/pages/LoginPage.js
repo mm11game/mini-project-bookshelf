@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { tokenState } from "../atom/atom";
+import { tokenState, userState } from "../atom/atom";
 const axios = require("axios");
 
 const LoginPage = () => {
   const [details, setDetails] = useState({ name: "", password: "" });
   const history = useHistory();
   const [token, setToken] = useRecoilState(tokenState);
+  const [user, setUser] = useRecoilState(userState);
 
   const loginAndSaveToken = async () => {
     const body = { ...details };
@@ -17,6 +18,7 @@ const LoginPage = () => {
     );
     window.localStorage.setItem("Token", data.token);
     setToken(() => data.token);
+    setUser(() => data.user);
     history.push("/");
   };
 

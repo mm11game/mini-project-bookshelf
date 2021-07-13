@@ -32,6 +32,16 @@ module.exports = {
       res.send(createBook);
     }
   }),
+  bookDelete: asyncHandler(async (req, res) => {
+    //book.userId === req.tokenUser.id랑 같은확인하고
+    //같으면 지우고 아니면 에러
+    //어떤책인지 book.id와 userId가 같으면 지울수가 있다.
+    const { bookid } = req.headers;
+    const deleted = await Book.destroy({
+      where: { userId: req.tokenUser.id, id: bookid },
+    });
+    res.send("잘지워짐");
+  }),
   getMemoList: asyncHandler(async (req, res) => {
     const { bookid } = req.headers;
 

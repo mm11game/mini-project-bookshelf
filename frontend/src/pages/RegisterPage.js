@@ -10,6 +10,7 @@ const RegisterPage = () => {
     address: "",
   });
   const history = useHistory();
+
   const saveToken = async () => {
     const body = { ...details };
     const { data } = await axios.post(
@@ -17,10 +18,8 @@ const RegisterPage = () => {
       body
     );
 
-    if (data) {
-      window.localStorage.setItem("Token", data.token);
-      history.push("/");
-    }
+    window.localStorage.setItem("Token", data.token);
+    history.push("/");
   };
   return (
     <div>

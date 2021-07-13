@@ -10,8 +10,9 @@ const MyBookObj = ({ mybook, memo }) => {
       <h2>{mybook.writer}</h2>
       <h2>{mybook.publisher}</h2>
       <h2>{mybook.when}</h2>
-      <h2>메모 : {memo.content}</h2>
+      <h2>메모 : {memo !== undefined ? memo.content : ""}</h2>
       <button onClick={deleteMyBookHandler}>책장에서 삭제</button>
+      <button onClick={deleteMyBookHandler}>메모 바꾸기</button>
     </div>
   );
 };

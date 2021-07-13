@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { memoState, myBooksState } from "../atom/atom";
 
-const BookObj = ({ book }) => {
+const BookObj = ({ book, removeBookHandler }) => {
   const [myBooks, setMyBooks] = useRecoilState(myBooksState);
   const [memos, setMemos] = useRecoilState(memoState);
+  useEffect(() => {
+    window.localStorage.setItem("myBooks", JSON.stringify(myBooks));
+  }, [myBooks]);
 
   const addBookHandler = () => {
     const memo = memos.find((m) => m.book_id === book.id);
@@ -23,9 +26,6 @@ const BookObj = ({ book }) => {
       }
     });
   };
-  useEffect(() => {
-    window.localStorage.setItem("myBooks", JSON.stringify(myBooks));
-  }, [myBooks]);
 
   return (
     <div style={{ border: "1px solid black" }}>
@@ -34,6 +34,9 @@ const BookObj = ({ book }) => {
       <h2>{book.publisher}</h2>
       <h2>{book.when}</h2>
       <button onClick={addBookHandler}>나의 책장에 추가</button>
+      <button onClick={() => removeBookHandler(book)}>
+        책장에서 지워버리기
+      </button>
     </div>
   );
 };

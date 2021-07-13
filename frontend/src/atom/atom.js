@@ -22,3 +22,8 @@ export const memoState = atom({
   key: "memoState",
   default: [],
 });
+////////////
+export const userState = atom({
+  key: "userState",
+  default: {},
+});
