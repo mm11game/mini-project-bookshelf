@@ -21,7 +21,6 @@ const HomePage = () => {
   }, []);
 
   const removeBookHandler = async (book) => {
-    console.log(user, book.id);
     if (user) {
       setBooks(() => {
         return books.filter((e) => {

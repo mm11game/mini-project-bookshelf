@@ -96,39 +96,3 @@ module.exports = {
     res.send(changed);
   }),
 };
-
-//   signup: asyncHandler(async (req, res) => {
-//     const { name, password, address, phone } = req.body;
-
-//     const user = await User.findOne({
-//       where: { name: name },
-//     });
-
-//     if (user) {
-//       res.status(401);
-//       throw new Error("이미 가입한 사람");
-//     } else {
-//       bcrypt.genSalt(saltRound, (err, salt) => {
-//         bcrypt.hash(password, salt, async (err, hash) => {
-//           try {
-//             if (hash) {
-//               const createUser = await User.create({
-//                 name,
-//                 password: hash,
-//                 address,
-//                 phone,
-//               });
-
-//               let token = generateToken(createUser.id);
-
-//               res.send({ createUser, token });
-//             } else {
-//               throw new Error("해쉬 오류");
-//             }
-//           } catch (err) {
-//             console.log(err);
-//           }
-//         });
-//       });
-//     }
-//   }),
